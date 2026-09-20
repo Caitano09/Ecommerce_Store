@@ -1,11 +1,24 @@
+import Footer from "@/components/Footer";
 import HeaderSlider from "@/components/HeaderSlider";
-import {Navbar} from "@/components/Navbar";
+import HomeProducts from "@/components/HomeProduct";
+import { Navbar } from "@/components/Navbar";
+import { fetchProducts } from "@/utils/actions/product.action";
 
-export default function page(){
-  return <div>
-    <Navbar/>
+import React from "react";
+
+export default async function page() {
+  const allProducts = await fetchProducts();
+
+  return (
     <div>
-      <HeaderSlider/>
+      <Navbar />
+      <div>
+        <HeaderSlider />
+
+        <HomeProducts products={allProducts} />
+      </div>
+
+      <Footer />
     </div>
-  </div>
+  );
 }
