@@ -5,13 +5,13 @@ import { Navbar } from "./Navbar";
 import Image from "next/image";
 import { assets } from "@/public/assets/assets";
 import Link from "next/link";
-// import { cartStore } from "./store/cart-store";
+import { cartStore } from "./store/cart-store";
 import toast from "react-hot-toast";
 
 const ProductDetails = ({ product }: { product: ProductParams }) => {
   const handleAddToCart = () => {
-    // const addItem = cartStore.getState().addItem;
-    // addItem(product);
+    const addItem = cartStore.getState().addItem;
+    addItem(product);
     toast.success("Check Cart");
   };
   return (
