@@ -5,14 +5,14 @@ import Image from "next/image";
 import Link from "next/link";
 import  { useState } from "react";
 import HamX from "./Hamx";
-// import { useAppContext } from "@/context/AppContext";
-// import { signOut } from "@/utils/actions/userAuth.action";
+import { useAppContext } from "@/context/AppContext";
+import { signOut } from "@/utils/actions/userAuth.action";
 import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
-  // const { session, setSession } = useAppContext();
+  const { session, setSession } = useAppContext();
 
   const router = useRouter();
 
@@ -20,11 +20,11 @@ export const Navbar = () => {
     setUserOpen((prev) => !prev);
   };
 
-  // const handleSignOut = async () => {
-  //   await signOut();
-  //   setSession(null);
-  //   router.push("/");
-  // };
+  const handleSignOut = async () => {
+    await signOut();
+    setSession(null);
+    router.push("/");
+  };
   return (
     <nav className="flex items-center justify-between px-6 md:px-16 lg:px-32 py-3   text-white bg-black ">
       <Link href="/">
@@ -87,7 +87,7 @@ export const Navbar = () => {
 
           <HamX isOpen={isOpen} setIsOpen={setIsOpen} />
         </div>
-        {/* {userOpen && (
+        {userOpen && (
           <div className=" absolute w-[350px] h-[200px] flex flex-col flex-full bg-black text-white top-[92px] right-0 z-10 rounded-b-2xl max-md:top-[48px] md:top-[48px]">
             <div className="flex flex-row justify-center items-center">
               {session ? (
@@ -126,7 +126,7 @@ export const Navbar = () => {
               </div>
             )}
           </div>
-        )} */}
+        )}
       </div>
 
       {isOpen && (
